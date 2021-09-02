@@ -1,7 +1,15 @@
 #!/bin/bash
 
-ifconfig
+function rootcheck() {
+	whoami | grep 'root' &> /dev/null
+	if [[ $? != 0 ]]; then
+		su -
+	fi
+}
+ifconfig &> /dev/null
 
 if [[ $? != 0 ]]; then 
-	apt-get install net-tools
+	$(rootcheck) apt-get install net-tools
+else
+	echo "ifconfig installed"
 fi

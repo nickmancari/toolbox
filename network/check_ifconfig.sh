@@ -6,6 +6,7 @@ function rootcheck() {
 		su -
 	fi
 }
+
 ifconfig &> /dev/null
 
 if [[ $? != 0 ]]; then 
